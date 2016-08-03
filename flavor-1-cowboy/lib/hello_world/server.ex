@@ -9,8 +9,6 @@ defmodule HelloWorld.Server do
     opts = [port: port]
     env = [dispatch: dispatch]
 
-    IO.puts("Listening on localhost:#{port}")
-
     :cowboy.start_http(:http, 100, opts, [env: env])
   end
 end
