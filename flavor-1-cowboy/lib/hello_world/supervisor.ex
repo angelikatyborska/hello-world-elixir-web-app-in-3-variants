@@ -1,15 +1,13 @@
 defmodule HelloWorld.Supervisor do
   use Supervisor
 
-  def start_link(arg) do
-    Supervisor.start_link(__MODULE__, arg)
+  def start_link(options) do
+    Supervisor.start_link(__MODULE__, options)
   end
 
-  def init(_args) do
-    port = Application.get_env(:hello_world, :port)
-
+  def init(options) do
     children = [
-      worker(HelloWorld.Server, [port])
+      worker(HelloWorld.Server, [options])
     ]
 
     supervise(children, strategy: :one_for_one)

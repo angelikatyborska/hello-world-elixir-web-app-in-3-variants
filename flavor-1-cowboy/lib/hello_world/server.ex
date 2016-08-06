@@ -1,13 +1,12 @@
 defmodule HelloWorld.Server do
-  def start_link(port) do
+  def start_link(options) do
     routes = [
       {"/hello/[:name]", HelloWorld.HelloHandler, []},
       {"/[...]", HelloWorld.GoodbyeHandler, []},
     ]
 
     dispatch = :cowboy_router.compile([{:_, routes}])
-
-    opts = [port: port]
+    opts = [port: options[:port]]
     env = [dispatch: dispatch]
 
     :cowboy.start_http(:http, 100, opts, [env: env])
