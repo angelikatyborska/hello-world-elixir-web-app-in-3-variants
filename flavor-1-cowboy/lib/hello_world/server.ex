@@ -1,7 +1,8 @@
 defmodule HelloWorld.Server do
   def start_link(port) do
     routes = [
-      {"/[:name]", HelloWorld.Handler, []}
+      {"/hello/[:name]", HelloWorld.HelloHandler, []},
+      {"/[...]", HelloWorld.GoodbyeHandler, []},
     ]
 
     dispatch = :cowboy_router.compile([{:_, routes}])

@@ -4,19 +4,31 @@ defmodule HelloWorld.Router do
   plug :match
   plug :dispatch
 
-  get "/:name" do
-    greet(conn, name)
+  get "/hello" do
+    hello(conn)
+  end
+
+  get "/hello/:name" do
+    hello(conn, name)
   end
 
   match _ do
-    send_resp(conn, 404, "Goodbye!")
+    goodbye(conn)
   end
 
-  defp greet(conn, name) do
-    body = "Hello, #{String.capitalize(name || "World")}!"
+  defp hello(conn, name \\ "World") do
+    body = "Hello, #{String.capitalize(name)}!"
 
     conn
     |> Plug.Conn.put_resp_content_type("text/plain")
     |> Plug.Conn.send_resp(200, body)
+  end
+
+  defp goodbye(conn) do
+    body = "Goodbye!"
+
+    conn
+    |> Plug.Conn.put_resp_content_type("text/plain")
+    |> Plug.Conn.send_resp(404, body)
   end
 end
