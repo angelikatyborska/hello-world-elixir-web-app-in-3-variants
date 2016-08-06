@@ -1,11 +1,12 @@
 defmodule HelloWorld.Server do
   def start_link(options) do
-    routes = [
+    path_list = [
       {"/hello/[:name]", HelloWorld.HelloHandler, []},
       {"/[...]", HelloWorld.GoodbyeHandler, []},
     ]
 
-    dispatch = :cowboy_router.compile([{:_, routes}])
+    routes = [{:_, path_list}]
+    dispatch = :cowboy_router.compile(routes)
     opts = [port: options[:port]]
     env = [dispatch: dispatch]
 

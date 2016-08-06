@@ -1,10 +1,10 @@
 defmodule HelloWorld.HelloHandler do
-  def init(req, opts) do
-    name = :cowboy_req.binding(:name, req, "World")
+  def init(request, options) do
+    name = :cowboy_req.binding(:name, request, "World")
     headers = [{"content-type", "text/plain"}]
     body = "Hello, #{String.capitalize(name)}!"
 
-    :cowboy_req.reply(200, headers, body, req)
-    {:ok, req, opts}
+    request2 = :cowboy_req.reply(200, headers, body, request)
+    {:ok, request2, options}
   end
 end
