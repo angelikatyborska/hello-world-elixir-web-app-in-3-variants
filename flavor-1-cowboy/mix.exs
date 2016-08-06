@@ -16,7 +16,7 @@ defmodule HelloWorld.Mixfile do
   end
 
   defp applications(:dev), do: applications(:all) ++ [:remix]
-  defp applications(_), do: [:logger, :cowboy]
+  defp applications(_), do: [:cowboy]
 
   defp deps do
     [
