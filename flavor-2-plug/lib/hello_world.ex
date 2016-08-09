@@ -3,6 +3,6 @@ defmodule HelloWorld do
 
   def start(_type, _args) do
     port = Application.get_env(:hello_world, :port)
-    HelloWorld.Supervisor.start_link([port: port])
+    Plug.Adapters.Cowboy.http(HelloWorld.Router, [], [port: port])
   end
 end
