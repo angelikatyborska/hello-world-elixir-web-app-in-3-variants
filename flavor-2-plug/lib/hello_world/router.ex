@@ -1,6 +1,7 @@
 defmodule HelloWorld.Router do
   use Plug.Router
 
+  plug Plug.Logger
   plug :match
   plug :dispatch
 
