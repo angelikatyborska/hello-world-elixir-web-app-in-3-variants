@@ -21,15 +21,15 @@ defmodule HelloWorld.Router do
     body = "Hello, #{String.capitalize(name)}!"
 
     conn
-    |> Plug.Conn.put_resp_content_type("text/plain")
-    |> Plug.Conn.send_resp(200, body)
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, body)
   end
 
   defp goodbye(conn) do
     body = "Goodbye!"
 
     conn
-    |> Plug.Conn.put_resp_content_type("text/plain")
-    |> Plug.Conn.send_resp(404, body)
+    |> put_resp_content_type("text/plain")
+    |> send_resp(404, body)
   end
 end
