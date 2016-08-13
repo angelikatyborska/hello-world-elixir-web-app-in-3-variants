@@ -2,8 +2,8 @@ defmodule HelloWorld.HelloWorldController do
   use HelloWorld.Web, :controller
 
   def hello(conn, params) do
-  name = hd params["name"] || "World"
-  body = "Hello, #{String.capitalize(name)}!"
+    name = params["name"] || "World"
+    body = "Hello, #{String.capitalize(name)}!"
 
     conn
     |> put_resp_content_type("text/plain")
