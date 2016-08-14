@@ -6,15 +6,15 @@ defmodule HelloWorld.HelloWorldController do
     body = "Hello, #{String.capitalize(name)}!"
 
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, body)
+    |> put_status(200)
+    |> text(body)
   end
 
   def goodbye(conn, _params) do
     body = "Goodbye!"
 
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(404, body)
+    |> put_status(404)
+    |> text(body)
   end
 end
