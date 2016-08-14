@@ -14,9 +14,9 @@ defmodule HelloWorld do
     dispatch = :cowboy_router.compile(routes)
     opts = [port: port]
     env = [dispatch: dispatch]
-    onresponse = fn(status, headers, body, request) ->
-      method = elem(request, 5)
-      path = elem(request, 11)
+    onresponse = fn(status, _headers, _body, request) ->
+      method = :cowboy_req.method(request)
+      path = :cowboy_req.path(request)
       Logger.info("#{method} #{path} - #{status}")
       request
     end
